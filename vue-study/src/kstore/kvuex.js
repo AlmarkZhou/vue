@@ -14,6 +14,7 @@ class Store {
           $$state: options.state
         }
       },
+      computed
     })
 
     // 修改this指向
