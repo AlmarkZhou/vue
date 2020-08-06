@@ -4,7 +4,7 @@ class Store {
   constructor(options) {
     this._mutations = options.mutations
     this._actions = options.actions
-    
+    let _getters = options.getters
     // 创建响应式的state
     // this.$store.state.counter
     this._vm = new _Vue({
@@ -21,8 +21,12 @@ class Store {
     this.dispatch = this.dispatch.bind(this)
 
     // getters
-    this.getters = {}
-    // computed
+    this.getters = Object.create(null)
+    Object.keys(_getters).forEach((key) => {
+      Object.defineProperty(this.getters, key, {
+        get: () => _getters[key](this.state)
+      })
+    })
   }
 
   get state() {
@@ -62,8 +66,8 @@ class Store {
     // 传入当前Store实例做上下文
     return fn(this, payload)
   }
-
 }
+
 
 function install(Vue) {
   _Vue = Vue

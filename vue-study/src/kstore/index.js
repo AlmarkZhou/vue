@@ -5,8 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    counter: 0,
-    name: 'zhou',
+    counter: 0
   },
   mutations: {
     // state如何获取？
@@ -25,8 +24,7 @@ export default new Vuex.Store({
   getters: {
     doubleCounter(state) {
       return state.counter * 2
-    },
-    getName: (state) => state.name
+    }
   },
   modules: {
   }
