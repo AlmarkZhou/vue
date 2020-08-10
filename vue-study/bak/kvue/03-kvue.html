@@ -1,0 +1,38 @@
+<meta charset="UTF-8">
+<div id="app">
+  <p>{{counter}}</p>
+  <p k-text="counter"></p>
+  <p k-html="desc"></p>
+
+  <input type="text" k-model="value" :value="value">
+  <p>{{value}}</p>
+  <div @click="showAlert('试试',213)">点击弹窗</div>
+</div>
+
+<!-- <script src="../node_modules/vue/dist/vue.js"></script> -->
+<script src="kvue.js"></script>
+
+<script>
+  const app = new KVue({
+    el:'#app',
+    data: {
+      counter: 1,
+      desc: '<span style="color:red">村长好</span>',
+      value: '现实双向数据绑定',
+    },
+    methods:{
+      showAlert(arg1,arg2){
+        alert(arg1)
+        alert(arg2)
+      },      
+      changeValue(arg){
+        this.value = arg
+        console.log(this.value)
+      },
+    },
+  })
+  setInterval(() => {
+    app.counter++
+  }, 1000);
+
+</script>
